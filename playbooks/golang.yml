@@ -1,0 +1,5 @@
+- name: golang development packages
+  apt:
+    name:
+    - golang-go
+    - gccgo

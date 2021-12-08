@@ -1,0 +1,8 @@
+- name: nodejs development packages
+  apt:
+    name:
+    - nodejs
+    - npm
+
+- name: install yarn
+  command: npm install -g yarn

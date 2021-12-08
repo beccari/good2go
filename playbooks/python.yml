@@ -1,0 +1,9 @@
+- name: python development packages
+  apt:
+    name:
+    - python3
+    - python3-pip
+    - python3-gdal
+    - python3-sphinx
+    - virtualenv
+    - python3-venv

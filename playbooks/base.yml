@@ -1,0 +1,15 @@
+- name: basic packages
+  apt:
+    name:
+    - git
+    - net-tools
+    - lsb
+    - inetutils-traceroute
+    - libcurl4-openssl-dev
+    - libssl-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - make
+    - build-essential
+    - zlib1g-dev
+    - libbz2-dev

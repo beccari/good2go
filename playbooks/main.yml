@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+  - include: base.yml
+  - include: docker.yml
+  - include: snaps.yml
+  - include: chrome.yml
+  - include: python.yml
+  - include: nodejs.yml
+  - include: golang.yml
+  - include: my-extra-tasks.yml

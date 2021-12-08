@@ -1,0 +1,16 @@
+- name: Check if Google Chrome is already installed
+  command: dpkg-query -W google-chrome
+  register: google_chrome_check
+  failed_when: google_chrome_check.rc > 1
+  changed_when: google_chrome_check.rc == 1
+  
+
+- name: Download Google Chrome
+  get_url: 
+    url="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" dest="/tmp/google-chrome-stable_current_amd64.deb"
+  when: google_chrome_check.rc == 1
+
+- name: Install Chrome
+  apt: 
+    deb: "/tmp/google-chrome-stable_current_amd64.deb" 
+  when: google_chrome_check.rc == 1

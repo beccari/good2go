@@ -1,0 +1,11 @@
+- name: install kubectl
+  community.general.snap: name=kubectl state=present classic=true
+
+- name: install vscode via snap
+  community.general.snap: name=code state=present classic=true
+
+- name: install slack via snap
+  community.general.snap: name=slack state=present classic=true
+
+- name: install 1password via snap
+  community.general.snap: name=1password state=present

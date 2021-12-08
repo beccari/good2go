@@ -1,0 +1,47 @@
+- name: Get Ubuntu Release
+  command: lsb_release -cs
+  register: linux_release
+
+- debug: var=linux_release.stdout
+
+- name: install basic dependencies
+  apt:
+    name:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - software-properties-common
+    - lsb-release
+  
+- name:  add GPG key for docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add docker repo to apt
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu {{ linux_release.stdout }} stable
+    state: present
+
+- name: install docker
+  apt:
+    name:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose
+
+- name: ensure docker group exists
+  group:
+    name: docker
+    state: present
+
+- name: adding user {{ ansible_env.SUDO_USER }} to group docker
+  user: name={{ ansible_env.SUDO_USER }}
+        groups=docker
+        append=yes 
+
+- name:
+  debug:
+    msg: "Hey {{ ansible_env.SUDO_USER }} you will be able to execute docker as a non-root user on your next login!"
