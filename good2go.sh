@@ -8,7 +8,9 @@ set -euo pipefail
 
 echo "Automated shell script + Ansible to prepare your Ubuntu for development"
 
-if [! hash -v ansible &> /dev/null]; then
+echo "Checking if ansible is installed..."
+
+if ! [ -x "$(command -v ansible)" ]; then
     echo "Installing ansible..."
     sudo apt update
     sudo apt install git software-properties-common
